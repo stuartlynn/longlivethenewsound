@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import SubmitForm from './components/SubmitForm';
 import Typography from '@material-ui/core/Typography';
 import 'typeface-roboto'
+import Notifier from './components/Notifier'
 
 const Container = styled.div`
  display:grid;
@@ -128,7 +129,7 @@ class App extends Component {
       Earlid
       Third Coast Producer Index
     </Text>
-
+    <Notifier />
       </Container>
     );
   }

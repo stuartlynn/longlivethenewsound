@@ -13,6 +13,7 @@ import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import AudioPlayer from './AudioPlayer'
+import Notifier, { openSnackbar }  from './Notifier'
 
 const FormContainer = styled.div`
    display:grid;
@@ -45,16 +46,12 @@ class SubmitForm extends Component {
   };
 
   handleFinishedUpload(info){
-    console.log('file info is ', info)
-    console.log('File uploaded with filename', info.filename)
-    console.log('Access it on s3 at', info.fileUrl)
+    openSnackbar("Succesfully uploaded file")
     this.setState({audioURL: info.fileUrl})
   }
 
   handleChange(name){
     return (event) => {
-      console.log(event.target.type)
-      console.log('updating ', name, ' to val ', event.target.value)
       this.setState({
         [name]: event.target.type === 'checkbox' ? event.target.checked : event.target.value,
       });
@@ -62,6 +59,7 @@ class SubmitForm extends Component {
   };
 
   createSubmission(){
+    openSnackbar('Attempting to submit')
     fetch('/entry/', {
       method:"POST",
       body: JSON.stringify(this.state),
@@ -71,6 +69,9 @@ class SubmitForm extends Component {
       mode: 'cors'
     }).then(()=>{
       this.setState(blankState)
+      openSnackbar('Successfully submitted!')
+    }).catch(()=>{
+      openSnackbar('Something went wrong send us an email at longlivethenewsound@gmail.com')
     })
   }
   validateAndSubmit(){
@@ -81,11 +82,14 @@ class SubmitForm extends Component {
       }
       return errorHash
     }, {} )
-    console.log(errors)
+
     this.setState({errors},()=>{
       if(Object.values(this.state.errors).filter(a=>a).length==0){
         console.log('submitting')
         this.createSubmission()
+      }
+      else{
+        openSnackbar("Make sure you filled out all the fields and checked the acknowledgement")
       }
     })
   }
@@ -207,10 +211,10 @@ class SubmitForm extends Component {
               error = {this.state.errors.acknowledgement}
             />
           }
+          error = {this.state.errors.acknowledgement}
           label="By submitting work you acknowledge that you are either the owner, or have the right to distribute submitted materials. LLtNS does not make money from the work submitted and artists do not make money from submitting materials to LLtNS. All rights remain with their original creator."
         />
 
-        <p>{this.state.errors.acknowledgement}</p>
         <DropzoneS3Uploader
             onFinish={this.handleFinishedUpload.bind(this)}
             s3Url={'https://longlivethenewsound.s3.amazonaws.com/'}
@@ -223,11 +227,19 @@ class SubmitForm extends Component {
             onProgress={(prog)=>console.log('prog ', prog )}
           >
             <div style={{boxSizing:'border-box', padding:'10px'}}>
-              <p style={{textAlign:'center'}}>
-                Click here or drop a file to upload
-              </p>
+              { this.state.audioURL ?
+
+                (<p style={{textAlign:'center'}}>
+                  {this.state.audioURL.split('/') [this.state.audioURL.split('/').length - 1]}
+                </p>)
+                :
+                (<p style={{textAlign:'center'}}>
+                  Click here or drop a file to upload
+                </p>)
+              }
+
               { this.state.errors.audioURL !== undefined &&
-               (<p style={{color:'red'}}>You didn't submit a file</p>)
+               (<p style={{color:'red', textAlign:'center'}}>You didn't submit a file</p>)
               }
           </div>
 
