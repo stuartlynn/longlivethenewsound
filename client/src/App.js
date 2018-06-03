@@ -20,7 +20,7 @@ const HeaderLarge = (props)=>(
 )
 
 const HeaderSmall = (props)=>(
-  <Typography variant="display2" style={{marginBottom:'10px'}} gutterBottom>
+  <Typography variant="display2" style={{marginBottom:'10px', marginTop:'20px'}} gutterBottom>
     {props.children}
   </Typography>
 )
@@ -65,31 +65,42 @@ class App extends Component {
           <li><a href='https://pca.st/sn8i'>PocketCasts</a></li>
         </ul>
       </Text>
+
       <HeaderSmall>
         Submit Your Work
       </HeaderSmall>
 
       <SubmitForm />
+      <Text>
+        Note that while we want to include almost all the submissions that come through,
+        we are screening to make sure the work meets our stated guidelines, does not
+        include hateful content, and is in the spirit of experimentation.
+        Please bare with us as we figure out what exactly that means.
+      </Text>
 
-        <HeaderSmall>
-          Submission Guidelines
-        </HeaderSmall>
-        <Text>
-          <ul>
-            <li>Minimum time: 5 seconds</li>
-            <li>Maximum time: 1 hour</li>
-            <li>Format: Mp3</li>
-            <li>Experimental, strange, genre-bending, audio centric work</li>
-            <li>Do not submit music but you may have music within the piece submitted, please.</li>
-            <li>Remove any station or host intro/outro unless it is a necessary part of the piece (include all credits in the written description)</li>
-          </ul>
+      <HeaderSmall>
+        Submission Guidelines
+      </HeaderSmall>
+      <Text>
+        <ul>
+          <li>Minimum time: 5 seconds</li>
+          <li>Maximum time: 1 hour</li>
+          <li>Format: Mp3</li>
+          <li>Experimental, strange, genre-bending, audio centric work</li>
+          <li>Do not submit music but you may have music within the piece submitted, please.</li>
+          <li>Remove any station or host intro/outro unless it is a necessary part of the piece (include all credits in the written description)</li>
+        </ul>
 
-          This is a non commercial vehicle. Nobody is making money from this and nobody intends to. The artist maintains all the right to their own work.
+        This is a non commercial vehicle. Nobody is making money from this and nobody intends to. The artist maintains all the right to their own work.
+        <br />
 
-          If you have either created something, or have access to material (historic or otherwise) please submit! We screen each piece to prevent hateful content and to ensure that it fits into the guidelines listed here. But we hope to be able to include almost everything submitted.
+        If you have either created something, or have access to material (historic or otherwise) please submit! We screen each piece to prevent hateful content and to ensure that it fits into the guidelines listed here. But we hope to be able to include almost everything submitted.
 
-          Be sure to include your name (or artist, collective name) and a brief description or information about the work. You may also include a link to your work online, and social media links. This will appear in the episode description. We also ask that you include an email address in case we need to contact you about the work - your contact information will not be included in the podcast description unless you want it to.
-        </Text>
+        <br />
+
+        Be sure to include your name (or artist, collective name) and a brief description or information about the work. You may also include a link to your work online, and social media links. This will appear in the episode description. We also ask that you include an email address in case we need to contact you about the work - your contact information will not be included in the podcast description unless you want it to.
+
+      </Text>
 
       <HeaderSmall>
         Who are we?
