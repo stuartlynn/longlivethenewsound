@@ -61,7 +61,7 @@ class App extends Component {
         You can subscribe to the podcast at
         <ul>
           <li>ITunes (link comming)</li>
-          <li><a href='https://feed.longlivethenewsound.com/feed.xml'>RSS</a></li>
+          <li><a href='https://feed.longlivethenewsound.com/rss.xml'>RSS</a></li>
           <li><a href='https://pca.st/sn8i'>PocketCasts</a></li>
         </ul>
       </Text>
