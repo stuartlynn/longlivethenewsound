@@ -33,6 +33,9 @@ const blankState = {
     errors:{}
   }
 
+const progressComponent = (props)=>(
+  <p>Progress</p>
+)
 class SubmitForm extends Component {
   state = blankState
 
@@ -214,9 +217,13 @@ class SubmitForm extends Component {
             maxSize={1024 * 1024 * 5}
             upload={uploadOptions}
             accept="audio/*"
+            style={{width:'100%', border:'1px dashed black'}}
+            maxSize={10000000}
+            onDone ={(d) => console.log('done ',d)}
+            onProgress={(prog)=>console.log('prog ', prog )}
           >
             <div style={{boxSizing:'border-box', padding:'10px'}}>
-              <p>
+              <p style={{textAlign:'center'}}>
                 Click here or drop a file to upload
               </p>
               { this.state.errors.audioURL !== undefined &&
@@ -227,7 +234,7 @@ class SubmitForm extends Component {
          </DropzoneS3Uploader>
 
         {this.renderSound()}
-        <Button variant="contained" color="primary" onClick={()=>this.submit()} >Submit</Button>
+        <Button variant="raise" color="primary" onClick={()=>this.submit()} >Submit</Button>
       </FormContainer>
     );
   }

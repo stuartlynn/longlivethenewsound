@@ -15,11 +15,17 @@ const Schema = mongoose.Schema,
 
 const SubmissionSchema = new Schema({
   id: ObjectId,
-  peiceName: String,
-  peiceDesription: String,
+  title : String,
+  description : String,
+  includeEmail: Boolean,
+  acknowledgement: Boolean,
+  name: String,
   email: String,
   submissionType: String,
   audioURL: String,
+  artistLink: String,
+  socialMedia: String,
+  created_at    : { type: Date, required: true, default: Date.now },
   accepted: Boolean
 });
 
@@ -44,20 +50,34 @@ app.get('/api/hello', (req, res) => {
 });
 
 app.post('/entry/', (req,res)=>{
-  const peiceName  = req.body.peiceName
-  const peiceDescription = req.body.peiceDescription
+  const title  = req.body.title
+  const name   = req.body.name
+  const description = req.body.description
   const email = req.body.email
+  const includeEmail= req.body.includeEmail
+  const submissionType = req.body.submissionType
   const audioURL = req.body.audioURL
+  const artistLink = req.body.artistLink
+  const socialMedia = req.body.socialMedia
+  const acknowledgement = req.body.acknowledgement
   const accepted = false
+
   console.log('entry ', req.body)
 
 
   const s  = Submission.create({
-    peiceName: peiceName,
-    peiceDescription: peiceDescrition,
-    email: email,
-    audioURL: audioURL,
-    accepted: accepted
+    title  : title,
+    name   : name,
+    description : description,
+    email : email,
+    emailInclude : email,
+    submissionType : submissionType,
+    includeEmail : includeEmail,
+    audioURL : audioURL,
+    artistLink : artistLink,
+    socialMedia : socialMedia,
+    acknowledgement : acknowledgement,
+    accepted : false,
   },function(err,submission){
     if(err){
       res.write(400)
