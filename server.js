@@ -1,11 +1,13 @@
 require('dotenv').config()
 const express = require('express');
 const bodyParser = require('body-parser')
+const basicAuth = require('express-basic-auth')
 const app = express();
 const port = process.env.PORT || 5000;
 const aws = require('aws-sdk')
 const mongoose = require('mongoose');
 const authentication = require('express-authentication');
+var privateRouter = express.Router();
 
 
 mongoose.connect(process.env.MONGO_CONNECTION);
@@ -26,7 +28,7 @@ const SubmissionSchema = new Schema({
   artistLink: String,
   socialMedia: String,
   created_at    : { type: Date, required: true, default: Date.now },
-  accepted: Boolean
+  state: {type: String, default: 'pending'}
 });
 
 const Submission = mongoose.model('Submission', SubmissionSchema);
@@ -45,9 +47,6 @@ app.use('/s3', require('react-dropzone-s3-uploader/s3router')({
     ACL: 'public-read',                                 // this is the default - set to `public-read` to let anyone view uploads
 }));
 
-app.get('/api/hello', (req, res) => {
-  res.send({ express: 'Hello From Express' });
-});
 
 app.post('/entry/', (req,res)=>{
   const title  = req.body.title
@@ -60,7 +59,6 @@ app.post('/entry/', (req,res)=>{
   const artistLink = req.body.artistLink
   const socialMedia = req.body.socialMedia
   const acknowledgement = req.body.acknowledgement
-  const accepted = false
 
   console.log('entry ', req.body)
 
@@ -77,7 +75,7 @@ app.post('/entry/', (req,res)=>{
     artistLink : artistLink,
     socialMedia : socialMedia,
     acknowledgement : acknowledgement,
-    accepted : false,
+    state : 'pending',
   },function(err,submission){
     if(err){
       res.write(400)
@@ -87,6 +85,73 @@ app.post('/entry/', (req,res)=>{
   })
 })
 
+const users = {}
+users[process.env.ADMIN_USERNAME] = process.env.ADMIN_PASSWORD
+console.log('authorised users ', users)
+privateRouter.use(basicAuth({
+  users:users,
+  unauthorizedResponse:'Please login in to view this part of the site'
+}))
+
+privateRouter.get('/entry/',(req,res)=>{
+  Submission.find({}, (err,submissions)=>{
+    res.json(submissions)
+  })
+})
+
+privateRouter.post('/entry/:id/approve', (req,res)=>{
+  Submission.findById( req.params.id, (err,submission)=>{
+    if (err){
+      res.send(404)
+    }
+    else{
+      submission.state = 'approved'
+      submission.save((err,updatedSub)=>{
+        if(err){res.send(500)}
+        else{ res.json(updatedSub)}
+      })
+    }
+  })
+})
+
+privateRouter.post('/entry/:id/reject', (req,res)=>{
+  Submission.findById( req.params.id, (err,submission)=>{
+    if (err){
+      res.send(404)
+    }
+    else{
+      submission.state = 'rejected'
+      submission.save((err,updatedSub)=>{
+        if(err){res.send(500)}
+        else{ res.json(updatedSub)}
+      })
+    }
+  })
+})
+
+privateRouter.get('/entry/aproved', (req,res)=>{
+  Submission.find({'state' : 'aproved'}, (err,submissions)=>{
+    res.json(submissions)
+  })
+})
+
+privateRouter.get('/entry/pending', (req,res)=>{
+  Submission.find({'state' : 'pending'}, (err,submissions)=>{
+    res.json(submissions)
+  })
+})
+
+privateRouter.get('/entry/rejected', (req,res)=>{
+  Submission.find({'state' : 'rejected'}, (err,submissions)=>{
+    res.json(submissions)
+  })
+})
+
+privateRouter.post('/publish', (req,res)=>{
+
+})
+
+app.use('/private/', privateRouter)
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
