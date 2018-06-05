@@ -153,5 +153,9 @@ privateRouter.post('/publish', (req,res)=>{
 
 app.use('/private/', privateRouter)
 
+app.use((eq, res)=>{
+  res.sendfile('client/build/index.html')
+});
+
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
