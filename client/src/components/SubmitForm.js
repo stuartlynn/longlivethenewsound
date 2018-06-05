@@ -28,6 +28,7 @@ const blankState = {
     title:'',
     description:'',
     email:'',
+    name:'',
     submissionType: 'Your Work',
     audioURL:null,
     includeEmail: false,
@@ -47,7 +48,7 @@ class SubmitForm extends Component {
 
   handleFinishedUpload(info){
     openSnackbar("Succesfully uploaded file")
-    this.setState({audioURL: info.fileUrl})
+    this.setState({audioURL: info.fileUrl, prog:null})
   }
 
   handleChange(name){
@@ -74,6 +75,7 @@ class SubmitForm extends Component {
       openSnackbar('Something went wrong send us an email at longlivethenewsound@gmail.com')
     })
   }
+
   validateAndSubmit(){
     console.log('validating')
     const errors = ['submitor', 'title', 'email','description', 'submissionType', 'audioURL', 'acknowledgement'].reduce((errorHash, key)=>{
@@ -106,6 +108,25 @@ class SubmitForm extends Component {
           streamUrl = {this.state.audioURL}
         />
       )
+    }
+  }
+
+  renderDropzoneContent(){
+    if(this.state.audioURL){
+      return (<p style={{textAlign:'center'}}>
+        {this.state.audioURL.split('/') [this.state.audioURL.split('/').length - 1]}
+      </p>)
+    }
+    else if (this.state.prog){
+      return (<p style={{textAlign:'center'}}> {this.state.prog} / 100 % </p>)
+    }
+    else if (this.state.errors.audioURL !== undefined){
+      return (<p style={{color:'red', textAlign:'center'}}>You didn't submit a file</p>)
+    }
+    else{
+      return ( <p style={{textAlign:'center'}}>
+        Click here or drop a file to upload
+      </p>)
     }
   }
 
@@ -224,23 +245,10 @@ class SubmitForm extends Component {
             style={{width:'100%', border:'1px dashed black'}}
             maxSize={10000000}
             onDone ={(d) => console.log('done ',d)}
-            onProgress={(prog)=>console.log('prog ', prog )}
+            onProgress={(prog)=>{this.setState({prog:prog})}}
           >
-            <div style={{boxSizing:'border-box', padding:'10px'}}>
-              { this.state.audioURL ?
-
-                (<p style={{textAlign:'center'}}>
-                  {this.state.audioURL.split('/') [this.state.audioURL.split('/').length - 1]}
-                </p>)
-                :
-                (<p style={{textAlign:'center'}}>
-                  Click here or drop a file to upload
-                </p>)
-              }
-
-              { this.state.errors.audioURL !== undefined &&
-               (<p style={{color:'red', textAlign:'center'}}>You didn't submit a file</p>)
-              }
+          <div style={{boxSizing:'border-box', padding:'10px'}}>
+            {this.renderDropzoneContent()}
           </div>
 
          </DropzoneS3Uploader>
