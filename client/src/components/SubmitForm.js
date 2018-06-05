@@ -176,14 +176,14 @@ class SubmitForm extends Component {
 
         <TextField
           id='artistlink'
-          label='Artist Link'
+          label='Artist Link (optional)'
           value={this.state.artistLink}
           onChange={this.handleChange('artistLink')}
         />
 
         <TextField
           id='socialMedia'
-          label='Social Media Link'
+          label='Social Media Link (optional)'
           value={this.state.socialMedia}
           onChange={this.handleChange('socialMedia')}
         />
