@@ -17,7 +17,7 @@ class AudioPlayer extends React.Component {
     return (
       <ReactAudioPlayer
         src= {this.props.streamUrl}
-        autoPlay
+        autoPlay = {this.props.autoPlay}
         controls
       />
     );

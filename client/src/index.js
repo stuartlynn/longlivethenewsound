@@ -6,6 +6,6 @@ import registerServiceWorker from './registerServiceWorker';
 import { createMuiTheme } from '@material-ui/core/styles';
 
 ReactDOM.render(
-  <App />,
-  document.getElementById('root'));
+    <App />
+, document.getElementById('root'))
 registerServiceWorker();
