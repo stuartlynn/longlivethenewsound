@@ -3,19 +3,19 @@ import Typography from '@material-ui/core/Typography';
 import SubmitForm from './SubmitForm';
 
 const HeaderLarge = (props)=>(
-  <Typography variant="display3" gutterBottom>
+  <Typography style= {{fontSize:'3.0rem'}} variant="display3" gutterBottom>
     {props.children}
   </Typography>
 )
 
 const HeaderSmall = (props)=>(
-  <Typography variant="display2" style={{marginBottom:'10px', marginTop:'20px'}} gutterBottom>
+  <Typography variant="display2" style={{marginBottom:'10px', marginTop:'20px', fontSize: '2rem'}} gutterBottom>
     {props.children}
   </Typography>
 )
 
 const Text = (props)=>(
-  <Typography variant="body2" style={{marginBottom:'10px'}} gutterBottom>
+  <Typography variant="body2" style={{marginBottom:'10px', fontWeight: 200}} gutterBottom>
     {props.children}
   </Typography>
 )
@@ -54,14 +54,13 @@ export default  (props)=>{
           <li>Etc...</li>
         </ul>
 
-        We aren’t a show in the traditional sense. There is no host, no weekly theme, no ads, no clock and no release schedule. Instead this is an ongoing space where different kinds of audio is perpetually being submitted and added to the catalogue. A playlist where you download or stream for as long as you like, listen actively, passively, on your commute or in your shower. No interruptions from DJs, hosts or ad breaks.
       </Text>
 
       <Text>
         Note that while we want to include almost all the submissions that come through,
         we are screening to make sure the work meets our stated guidelines, does not
         include hateful content, and is in the spirit of experimentation.
-        Please bare with us as we figure out what exactly that means.
+        Please bear with us as we figure out what exactly that means.
       </Text>
 
       <HeaderSmall>
@@ -73,7 +72,7 @@ export default  (props)=>{
           <li>Maximum time: 1 hour</li>
           <li>Format: Mp3</li>
           <li>Experimental, strange, genre-bending, audio centric work</li>
-          <li>Please do not submit music but you may have music within the piece submitted, please.</li>
+          <li>Please do not submit music but you may have music within the piece submitted</li>
           <li>Remove any station or host intro/outro unless it is a necessary part of the piece (include all credits in the written description)</li>
         </ul>
 
@@ -84,7 +83,10 @@ export default  (props)=>{
 
         <br />
 
-        Be sure to include your name (or artist, collective name) and a brief description or information about the work. You may also include a link to your work online, and social media links. This will appear in the episode description. We also ask that you include an email address in case we need to contact you about the work - your contact information will not be included in the podcast description unless you want it to.
+        Be sure to include your name (or artist, collective name) and a brief description or information about the work.
+        You may also include a link to your work online, and social media links. This will appear in the episode description.
+        We also ask that you include an email address in case we need to contact you about the work - your contact information
+        will not be included in the podcast description unless you want it to.
 
       </Text>
       <HeaderSmall>
@@ -103,8 +105,11 @@ export default  (props)=>{
         What happens next?
       </HeaderSmall>
       <Text>
-        We review each piece before it appears in the feed and will let you know when it appear on the show. Please direct any questions to: <a href="mailto:longlivethenewsound@gmail.com">longlivethenewsound@gmail.com</a>
-        If you hear something you want know more about, check the episode description for information provided by the uploader. If you want to support any of the work you find on this show, please find the artists directly.
+        We review each piece before it appears in the feed and will let you know when it
+        appear on the show. Please direct any questions to:
+        <a href="mailto:longlivethenewsound@gmail.com">longlivethenewsound@gmail.com</a>  If you hear something you want know more about,
+        check the episode description for information provided by the uploader.
+        If you want to support any of the work you find on this show, please find the artists directly.
       </Text>
   </div>)
 }
