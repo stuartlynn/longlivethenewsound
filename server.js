@@ -13,7 +13,7 @@ var privateRouter = express.Router();
 
 
 app.use(bodyParser.json())
-
+app.use(express.static('client/build'))
 // Set up View engine (mostly for emails)
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
