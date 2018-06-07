@@ -239,11 +239,10 @@ class SubmitForm extends Component {
         <DropzoneS3Uploader
             onFinish={this.handleFinishedUpload.bind(this)}
             s3Url={'https://longlivethenewsound.s3.amazonaws.com/'}
-            maxSize={1024 * 1024 * 5}
+            maxSize={1024 * 1024 * 500}
             upload={uploadOptions}
             accept="audio/*"
             style={{width:'100%', border:'1px dashed black'}}
-            maxSize={10000000}
             onDone ={(d) => console.log('done ',d)}
             onProgress={(prog)=>{this.setState({prog:prog})}}
           >
