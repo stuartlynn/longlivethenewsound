@@ -15,7 +15,7 @@ const HeaderSmall = (props)=>(
 )
 
 const Text = (props)=>(
-  <Typography variant="body2" style={{marginBottom:'10px', fontWeight: 200}} gutterBottom>
+  <Typography variant="body2" style={{marginBottom:'10px', fontWeight: 300}} gutterBottom>
     {props.children}
   </Typography>
 )
