@@ -7,5 +7,5 @@ yarn build
 cd ../
 git add client/build
 git commit -m "new deploy at $(date)"
-git push heroku deploy:master
+git push --force heroku deploy:master
 git checkout master
