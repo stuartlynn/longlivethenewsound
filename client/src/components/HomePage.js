@@ -25,7 +25,7 @@ export default  (props)=>{
     <div>
       <HeaderLarge> Long Live The New Sound </HeaderLarge>
         <Text>
-          An anti-podcast podcast. Subscribe at: <a href='https://itunes.apple.com/us/podcast/long-live-the-new-sound/id1393853495?mt=2'>ITunes</a> <a href='https://feed.longlivethenewsound.com/rss.xml'>RSS</a> <a href='https://pca.st/sn8i'>PocketCasts</a>
+          An anti-podcast podcast. Subscribe at: <a href='https://itunes.apple.com/us/podcast/long-live-the-new-sound/id1393853495?mt=2'>ITunes</a> <a href='https://feed.longlivethenewsound.com/rss.xml'>RSS</a> <a href='https://pca.st/sn8i'>PocketCasts</a> <a href='https://twitter.com/the_newsound'>@the_newsound</a>
         </Text>
 
       <HeaderSmall>

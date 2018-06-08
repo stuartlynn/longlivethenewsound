@@ -69,7 +69,11 @@ class SubmitForm extends Component {
       },
       mode: 'cors'
     }).then(()=>{
-      this.setState(blankState)
+      this.setState({
+        title:'',
+        description:'',
+        audioURL:null,
+      })
       openSnackbar('Successfully submitted!')
     }).catch(()=>{
       openSnackbar('Something went wrong send us an email at longlivethenewsound@gmail.com')
@@ -177,22 +181,11 @@ class SubmitForm extends Component {
         <TextField
           id='email'
           required
-          label='Contact Email'
+          label="Contact Email (wont be publicly publised, just for us to keep you in the loop)"
           value={this.state.email}
           onChange={this.handleChange('email')}
           errorText={this.state.errors.email}
           error={this.state.errors.email}
-        />
-
-        <FormControlLabel
-          control={
-            <Checkbox
-              checked={this.state.includeEmail}
-              onChange={this.handleChange('includeEmail')}
-              value="includeEmail"
-            />
-          }
-          label="Include email in episode description (if left unchecked your email will not be made public)"
         />
 
         <TextField
