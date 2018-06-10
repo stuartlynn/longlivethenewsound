@@ -8,6 +8,7 @@ const aws = require('aws-sdk')
 const mongoose = require('mongoose');
 const authentication = require('express-authentication');
 const mailer = require('./src/mailer')
+const updateFeed = require('./src/publish')
 
 var privateRouter = express.Router();
 const port = process.env.PORT || 5000;
@@ -48,6 +49,11 @@ require('./src/routes/submissions_routes')(app, privateRouter)
 // Password Protected Routes
 
 app.use('/private/', privateRouter)
+app.get('/feed', (req,res)=>{
+  updateFeed((err,feed)=>{
+    res.json(feed)
+  })
+})
 
 // Route any unmatched route to the React application
 
