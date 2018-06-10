@@ -15,6 +15,9 @@ const SubmissionSchema = new Schema({
   audioURL: String,
   artistLink: String,
   socialMedia: String,
+  duration: Number,
+  fileSize: Number,
+  fileType: String,
   created_at    : { type: Date, required: true, default: Date.now },
   state: {type: String, default: 'pending'}
 });

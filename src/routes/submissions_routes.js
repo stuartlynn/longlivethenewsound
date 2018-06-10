@@ -16,6 +16,9 @@ module.exports = (app, privateRouter)=>{
     const artistLink = req.body.artistLink
     const socialMedia = req.body.socialMedia
     const acknowledgement = req.body.acknowledgement
+    const fileSize = req.body.audioFileSize
+    const fileType = req.body.audioFileType
+    const duration = req.body.duration
 
     console.log('entry ', req.body)
 
@@ -32,6 +35,9 @@ module.exports = (app, privateRouter)=>{
       audioURL : audioURL,
       artistLink : artistLink,
       socialMedia : socialMedia,
+      fileSize: fileSize,
+      fileType: fileType,
+      duration: duration,
       acknowledgement : acknowledgement,
       state : 'pending',
     },function(err,submission){

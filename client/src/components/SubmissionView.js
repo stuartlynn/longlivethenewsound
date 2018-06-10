@@ -1,5 +1,5 @@
 import React from 'react'
-import AudioPlayer from './AudioPlayer'
+import ReactAudioPlayer from 'react-audio-player';
 import Button from '@material-ui/core/Button';
 
 const stateColors = {
@@ -19,9 +19,10 @@ export default (props)=>(
     <p>Gave permision: {props.acknowledgement}</p>
 
     <p> Submited by : {} </p>
-    <AudioPlayer
-      trackTitle= {props.title}
-      streamUrl = {props.audioURL}
+    <ReactAudioPlayer
+          src= {props.audioURL}
+          autoPlay={false}
+          controls
     />
     {props.adminControlls &&
      (<div>

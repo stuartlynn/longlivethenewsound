@@ -12,7 +12,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import AudioPlayer from './AudioPlayer'
+import ReactAudioPlayer from 'react-audio-player';
 import Notifier, { openSnackbar }  from './Notifier'
 
 const FormContainer = styled.div`
@@ -31,6 +31,7 @@ const blankState = {
     name:'',
     submissionType: 'Your Work',
     audioURL:null,
+    duration: null,
     includeEmail: false,
     errors:{}
   }
@@ -48,7 +49,18 @@ class SubmitForm extends Component {
 
   handleFinishedUpload(info){
     openSnackbar("Succesfully uploaded file")
-    this.setState({audioURL: info.fileUrl, prog:null})
+    console.log('file info ', info)
+    this.setState({
+      audioURL: info.fileUrl,
+      audioFileSize: info.file.size,
+      audioFileType: "audio/mpeg",
+      prog:null})
+  }
+
+  handleSoundLoaded(e){
+    this.setState({
+      duration : e.target.duration
+    })
   }
 
   handleChange(name){
@@ -107,9 +119,11 @@ class SubmitForm extends Component {
   renderSound(){
     if(this.state.audioURL){
       return(
-        <AudioPlayer
-          trackTitle= {'name'}
-          streamUrl = {this.state.audioURL}
+        <ReactAudioPlayer
+          src= {this.state.audioURL}
+          autoPlay={false}
+          onLoadedMetadata = {this.handleSoundLoaded.bind(this)}
+          controls
         />
       )
     }
@@ -246,7 +260,7 @@ class SubmitForm extends Component {
          </DropzoneS3Uploader>
 
         {this.renderSound()}
-        <Button variant="raise" color="primary" onClick={()=>this.submit()} >Submit</Button>
+        <Button variant="raised" color="primary" onClick={()=>this.submit()} >Submit</Button>
       </FormContainer>
     );
   }
