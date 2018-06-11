@@ -57,7 +57,7 @@ module.exports = (app, privateRouter)=>{
 
 
   privateRouter.get('/entry/',(req,res)=>{
-    Submission.find({}, (err,submissions)=>{
+    Submission.find({state: 'approved'}).sort([['created_at', 1]]).exec( (err,submissions)=>{
       res.json(submissions)
     })
   })

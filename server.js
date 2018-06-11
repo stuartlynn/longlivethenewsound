@@ -46,12 +46,41 @@ privateRouter.use(basicAuth({
 // Routes
 require('./src/routes/submissions_routes')(app, privateRouter)
 
+// Publish route
+
+privateRouter.post('/feed',(req,res)=>{
+  console.log("ATTEMPTING TO PUBLISH ")
+  updateFeed((err,result)=>{
+
+    console.log("generated feed ", err, result)
+    if (err){
+
+      res.status(500)
+      res.render('error', { error: err })
+
+    }
+    else{
+      res.json(result)
+    }
+  })
+})
 // Password Protected Routes
 
 app.use('/private/', privateRouter)
 app.get('/feed', (req,res)=>{
-  updateFeed((err,feed)=>{
-    res.json(feed)
+  console.log("ATTEMPTING TO PUBLISH ")
+  updateFeed((err,result)=>{
+
+    console.log("generated feed ", err, result)
+    if (err){
+
+      res.status(500)
+      res.render('error', { error: err })
+
+    }
+    else{
+      res.json(result)
+    }
   })
 })
 

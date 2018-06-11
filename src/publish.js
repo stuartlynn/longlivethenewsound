@@ -6,7 +6,7 @@ const fs = require('fs')
 const submissionToFeedItem = (submission) => {
   return {
     title:submission.title,
-    description: submission.description,
+    description: createFullDescription(submission),
     url: submission.audioURL,
     enclosure:{
       url:submission.audioURL,
@@ -21,10 +21,6 @@ const submissionToFeedItem = (submission) => {
 
 const updateFeed =(cb)=>{
   createFeed((json,xml)=>{
-
-    fs.writeFile('rss_local.xml',xml,function(err){
-      console.log('done')
-    })
     const s3 = new AWS.S3({
       Bucket: 'longlivethenewsound'
     })
@@ -46,6 +42,20 @@ const updateFeed =(cb)=>{
   })
 }
 
+const createFullDescription= (submission)=>{
+  const social = (submission.socialMedia && submission.socialMedia.length > 0 ?
+    `For more check out: ${submission.socialMedia}` : '')
+
+  const artist = (submission.artistLink && submission.artistLink.length > 0 ?
+    `For more about the artist: ${submission.artistLink}` : '')
+
+  return `Artist : ${submission.submitor}
+${submission.description}
+
+${social}
+${artist}
+`
+}
 const createFeed =(cb)=>{
 
   feed = new Podcast({
@@ -77,7 +87,8 @@ const createFeed =(cb)=>{
 }
 
 const createFeedItems = (cb)=>{
-  Submission.find({state: 'approved'}, (err,collection) =>{
+  Submission.find({state: 'approved'}).sort([['created_at', 1]]).exec( (err,collection) =>{
+    console.log('error ', err, ' collection ', collection)
     cb(collection.map( s=> submissionToFeedItem(s)))
   })
 }
