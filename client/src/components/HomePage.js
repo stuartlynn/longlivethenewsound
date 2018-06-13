@@ -48,8 +48,10 @@ export default  (props)=>{
           <li>Sound and radio art</li>
           <li>Experimental audio documentary</li>
           <li>Plunderphonic and audio collage</li>
+          <li>ASMR experiments</li>
           <li>Acoustic ecology and soundscapes</li>
-          <li>Sound rich fiction</li>
+          <li>Curious Ambient</li>
+          <li>Form bending fiction</li>
           <li>Experimental interviews</li>
           <li>Etc...</li>
         </ul>
