@@ -19,6 +19,25 @@ const submissionToFeedItem = (submission) => {
   }
 }
 
+const invalidateCloudFront = (cb) =>{
+  const cloudfront = new AWS.CloudFront();
+  const params = {
+    DistributionId : 'E2CYEU9ACNI2J0',
+    InvalidationBatch: {
+      CallerReference: Date().toString(),
+      Paths:{
+        Quantity: 1,
+        Items:[
+          '/rss.xml'
+        ]
+      }
+    }
+  }
+  cloudfront.createInvalidation(params, (err,data)=>{
+    if (err) cb(err,null);
+    else cb(null,data)
+  })
+}
 const updateFeed =(cb)=>{
   createFeed((json,xml)=>{
     const s3 = new AWS.S3({
@@ -36,7 +55,14 @@ const updateFeed =(cb)=>{
         cb(err)
       }
       else{
-        cb(null, json)
+        invalidateCloudFront((err,data)=>{
+          if(err){
+            cb(err,null)
+          }
+          else{
+            cb(null, json)
+          }
+        })
       }
     })
   })
