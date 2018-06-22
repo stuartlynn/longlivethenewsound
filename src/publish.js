@@ -2,11 +2,13 @@ const Submission = require('./models/submission')
 const Podcast = require('podcast')
 const AWS = require('aws-sdk');
 const fs = require('fs')
+const utf8 = require('utf8')
+
 
 const submissionToFeedItem = (submission) => {
   return {
-    title:submission.title,
-    description: createFullDescription(submission),
+    title: utf8.encode(submission.title),
+    description: utf8.encode(createFullDescription(submission)),
     url: submission.audioURL,
     enclosure:{
       url:submission.audioURL,
