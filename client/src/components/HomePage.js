@@ -61,6 +61,7 @@ export default props => {
               Next: <a href={`/listen/${next.slug}`}>{next.title}</a>
             </Text>
           </div>
+          <Text><a href='/episodes'>All episodes</a></Text>
         </React.Fragment>
       )}
       <HeaderSmall>Submit Your Work</HeaderSmall>
