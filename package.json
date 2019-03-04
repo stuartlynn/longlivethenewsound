@@ -21,9 +21,12 @@
     "node-id3": "^0.1.5",
     "podcast": "^1.1.0",
     "react-dropzone-s3-uploader": "^1.1.0",
+    "s3-access-log-parser": "^0.0.2",
+    "slug": "^1.0.0",
     "utf8": "^3.0.0"
   },
   "devDependencies": {
-    "concurrently": "^3.5.0"
+    "concurrently": "^3.5.0",
+    "nodemon": "^1.18.10"
   }
 }
