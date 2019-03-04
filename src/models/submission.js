@@ -5,6 +5,7 @@ const Schema = mongoose.Schema,
 const SubmissionSchema = new Schema({
   id: ObjectId,
   title : String,
+  slug: String,
   submitor : String,
   description : String,
   includeEmail: Boolean,
