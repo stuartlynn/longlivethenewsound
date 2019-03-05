@@ -34,20 +34,25 @@ export default function ListPage(props) {
                 flexDirection: 'row',
                 justifyContent: 'space-between',
               }}>
-              {e.artistLink ? 
+              {e.submitor ? 
                   <Text>
                     By:{' '}
-                    <a
-                      href={
-                        e.artistLink.includes('http')
-                          ? e.artistLink
-                          : `http://${e.artistLink}`
-                      }
-                      target="_blank">
-                      {e.submitor}
-                    </a>
+                    {e.artistLink ?
+                        <a
+                          href={
+                            e.artistLink.includes('http')
+                              ? e.artistLink
+                              : `http://${e.artistLink}`
+                          }
+                          target="_blank">
+                          {e.submitor}
+                      </a>
+                    :
+                        <span>{e.submitor}</span>
+                    }
                   </Text>
-              : <Text>Anonymous</Text>}
+              : <Text>Anonymous</Text>
+             }
               <Text>
                 <a href={`/listen/${e.slug}`} target="_blank">
                   Permlink
