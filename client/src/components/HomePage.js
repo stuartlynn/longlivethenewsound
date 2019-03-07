@@ -25,19 +25,25 @@ export default props => {
       <HeaderLarge>LLtNS : Long Live the New Sound</HeaderLarge>
       <Text>
         The anti-podcast podcast for creative audio. Freeform & public access,
-        always. 
+        always.
         <br />
-        Listen:{' '}
-        <a href="/episodes">Episodes</a>{' | '}
+        Listen: <a href="/episodes">Episodes</a>
+        {' | '}
         <a href="https://feed.longlivethenewsound.com/rss.xml">RSS</a> {' | '}
-        <a href="https://pca.st/sn8i">PocketCasts</a>{' | '}
-        <a href="https://radiopublic.com/long-live-the-new-sound-GbxBeN"> {' | '}
+        <a href="https://pca.st/sn8i">PocketCasts</a>
+        {' | '}
+        <a href="https://radiopublic.com/long-live-the-new-sound-GbxBeN">
+          {' '}
+          {' | '}
           RadioPublic
-        </a>{' | '}
-        + wherever you get your podcasts (and itunes) 
+        </a>
+        {' | '}
+        + wherever you get your podcasts (and itunes)
         <br />
-        For More: {' '}
-        <a href="https://twitter.com/the_newsound">@the_newsound</a> {' | '}
+        For More: <a href="https://twitter.com/lltinsound">
+          @the_newsound
+        </a>{' '}
+        {' | '}
         <a href="https://tinyletter.com/LLtNS">Newsletter</a>
       </Text>
 
