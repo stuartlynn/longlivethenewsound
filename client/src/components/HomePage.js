@@ -28,7 +28,7 @@ export default props => {
         always. 
         <br />
         Listen:{' '}
-        <a href="https://www.longlivethenewsound.com/episodes">Episodes</a>{' | '}
+        <a href="/episodes">Episodes</a>{' | '}
         <a href="https://feed.longlivethenewsound.com/rss.xml">RSS</a> {' | '}
         <a href="https://pca.st/sn8i">PocketCasts</a>{' | '}
         <a href="https://radiopublic.com/long-live-the-new-sound-GbxBeN"> {' | '}
