@@ -40,8 +40,8 @@ export default props => {
         {' | '}
         + wherever you get your podcasts (and itunes)
         <br />
-        For More: <a href="https://twitter.com/LLTNSound">
-          @LLTNSound
+        For More: <a href="https://twitter.com/lltinsound">
+          @the_newsound
         </a>{' '}
         {' | '}
         <a href="https://tinyletter.com/LLtNS">Newsletter</a>
