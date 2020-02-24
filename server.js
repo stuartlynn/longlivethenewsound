@@ -46,6 +46,7 @@ privateRouter.use(basicAuth({
 // Routes
 require('./src/routes/submissions_routes')(app, privateRouter)
 
+
 // Publish route
 
 privateRouter.post('/feed',(req,res)=>{
@@ -65,6 +66,7 @@ privateRouter.post('/feed',(req,res)=>{
   })
 })
 // Password Protected Routes
+
 
 app.use('/private/', privateRouter)
 app.get('/feed', (req,res)=>{

@@ -7,6 +7,8 @@ import 'typeface-roboto'
 import Notifier from './components/Notifier'
 import HomePage from './components/HomePage'
 import Admin from './components/Admin'
+import Listen from './components/Listen'
+import ListPage from './components/ListPage'
 import { BrowserRouter, Route} from 'react-router-dom'
 
 const Container = styled.div`
@@ -24,6 +26,9 @@ class App extends Component {
           <Route exact path='/' component={HomePage}/>
 
           <Route path='/admin' component={Admin}/>
+          <Route exact={true} path='/listen/:slug' component={Listen}/>
+
+          <Route exact={true} path='/episodes' component={ListPage}/>
 
           <Notifier />
         </Container>
