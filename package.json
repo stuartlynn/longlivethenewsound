@@ -1,32 +1,32 @@
 {
-  "name": "longlivethenewsound",
-  "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT",
-  "scripts": {
-    "client": "cd client && yarn start",
-    "server": "nodemon server.js",
-    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
-  },
-  "dependencies": {
-    "body-parser": "^1.18.3",
-    "dotenv": "^5.0.1",
-    "express": "^4.16.3",
-    "express-authentication": "^0.3.2",
-    "express-basic-auth": "^1.1.5",
-    "express-handlebars": "^3.0.0",
-    "express-mailer": "^0.3.1",
-    "jsmediatags": "^3.8.1",
-    "mongoose": "^5.1.2",
-    "node-id3": "^0.1.5",
-    "podcast": "^1.1.0",
-    "react-dropzone-s3-uploader": "^1.1.0",
-    "s3-access-log-parser": "^0.0.2",
-    "slug": "^1.0.0",
-    "utf8": "^3.0.0"
-  },
-  "devDependencies": {
-    "concurrently": "^3.5.0",
-    "nodemon": "^1.18.10"
-  }
+    "name": "longlivethenewsound",
+    "version": "1.0.0",
+    "main": "index.js",
+    "license": "MIT",
+    "scripts": {
+        "client": "cd client && yarn start",
+        "server": "nodemon server.js",
+        "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
+    },
+    "dependencies": {
+        "body-parser": "^1.18.3",
+        "dotenv": "^5.0.1",
+        "express": "^4.16.3",
+        "express-authentication": "^0.3.2",
+        "express-basic-auth": "^1.1.5",
+        "express-handlebars": "^3.0.0",
+        "express-mailer": "^0.3.1",
+        "jsmediatags": "^3.8.1",
+        "mongoose": "^5.1.2",
+        "node-id3": "^0.1.5",
+        "podcast": "^1.1.0",
+        "react-dropzone-s3-uploader": "^1.1.0",
+        "s3-access-log-parser": "^0.0.2",
+        "slug": "^1.0.0",
+        "utf8": "^3.0.0"
+    },
+    "devDependencies": {
+        "concurrently": "^3.5.0",
+        "nodemon": "^1.18.10"
+    }
 }
