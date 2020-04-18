@@ -44,6 +44,7 @@ export default function Listen(props) {
                         <a
                             target="_blank"
                             href={
+                                episode.artistLink &&
                                 episode.artistLink.includes("http")
                                     ? episode.artistLink
                                     : `http://${episode.artistLink}`

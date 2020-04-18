@@ -12,7 +12,7 @@
     "react-dom": "^16.8.0",
     "react-dropzone-s3-uploader": "^1.1.0",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "1.1.4",
+    "react-scripts": "3.4.0",
     "react-soundplayer": "^1.0.4",
     "styled-components": "^3.3.0",
     "typeface-roboto": "^0.0.54"
@@ -23,5 +23,17 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
