@@ -5,7 +5,7 @@
   "dependencies": {
     "@material-ui/core": "^1.0.0",
     "base-64": "^0.1.0",
-    "express": "^4.16.3",
+    "express": "^4.17.3",
     "material-ui-dropzone": "^1.0.3",
     "react": "^16.8.0",
     "react-audio-player": "^0.10.0",
